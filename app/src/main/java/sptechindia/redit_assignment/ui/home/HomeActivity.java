@@ -12,8 +12,12 @@ import android.widget.FrameLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
 import sptechindia.redit_assignment.R;
 import sptechindia.redit_assignment.base.BaseFragment;
+import sptechindia.redit_assignment.model.home.Child;
+import sptechindia.redit_assignment.network.ApiService;
+import sptechindia.redit_assignment.network.ServiceGenerator;
 import sptechindia.redit_assignment.ui.home.cominities.CommunitiesFragment;
 import sptechindia.redit_assignment.ui.home.email.EmailFragment;
 import sptechindia.redit_assignment.ui.home.profile.ProfileFragment;
@@ -42,6 +46,8 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 	@Bind( R.id.main_content )
 	CoordinatorLayout  mainContent;
 
+	ApiService apiService;
+
 	@Override
 	protected void onCreate( @Nullable Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
@@ -54,6 +60,12 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 		changeBottomTabIconColor( Constants.BottomTab.TAB_HOME );
 
 		getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, HomeFragment.newInstance(), HomeFragment.TAG ).commit();
+
+
+		apiService = new ApiService();
+
+		ApiService        client = ServiceGenerator.createService( ApiService.class);
+		final Call<Child> call   = client.getArticle();
 
 	}
 

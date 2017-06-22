@@ -9,7 +9,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import sptechindia.redit_assignment.utility.NetworkUtil;
 
-public class RequestInterceptor implements Interceptor {
+public class ReditInterceptor implements Interceptor {
 
 	private String TAG = "Interceptor";
 
