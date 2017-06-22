@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/layout_normal"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_height="wrap_content"
+              android:layout_gravity="top"
+              android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/dimen_16dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewTitleBottomSheetForgotPwd"
+            style="@style/textStyle_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.54"
+            android:text="@string/forgot_pwd"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewTitleBottomSheetForgotPwd"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputlayoutForgotPwd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="@dimen/dimen_18dp"
+                android:layout_marginRight="@dimen/dimen_18dp"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edittextEmailForgotPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/dimen_100dp"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/buttonResetForgotPwd"
+                    style="@style/Button_style_norml"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="@dimen/dimen_38dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:text="@string/reset"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_14sp"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/progressBarForgotPwd"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="@dimen/dimen_50dp"
+                    android:layout_height="38dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

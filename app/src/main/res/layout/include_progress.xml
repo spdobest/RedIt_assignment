@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/flProgresRoot"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             android:visibility="gone"
+             tools:visibility="visible"
+             xmlns:tools="http://schemas.android.com/tools"
+             style="@style/layout_match_withoutpadding"
+    >
+
+    <ProgressBar
+        android:id="@+id/progressbarLoading"
+        android:layout_width="@dimen/dimen_40dp"
+        android:layout_height="@dimen/dimen_40dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/circular_bg"
+        android:padding="@dimen/dimen_5dp"
+        />
+
+</FrameLayout>

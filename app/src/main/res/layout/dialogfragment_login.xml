@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              style="@style/layout_match"
+    android:background="@drawable/drawable_gradient"
+    >
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEMailId"
+        style="@style/layout_normal"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edittextEmailLogin"
+            style="@style/edittext_style_norml"
+            android:hint="Email Or UserId"
+            android:inputType="textEmailAddress"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEPwdId"
+        style="@style/layout_normal"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edittextPasswordLogin"
+            style="@style/edittext_style_norml"
+            android:hint="password"
+            android:inputType="textPassword"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+ <android.support.v7.widget.AppCompatButton
+       android:id="@+id/buttonLogin"
+        style="@style/buttonColoredStyle"
+        android:text="@string/login"
+       android:textAllCaps="true"
+       android:textColor="@android:color/white"
+        />
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/buttonForgotPassword"
+        style="@style/buttonStyleBoarderless"
+        android:text="@string/forgot_pwd"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        />
+
+</LinearLayout>

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">RedIt_Assignment</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="data_not_available">Data Not Available</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="forgot_pwd">Forgot Password</string>
+    <string name="reset">Reset</string>
+    <string name="skipNow">Skip For Now</string>
+    <string name="communities">Communities</string>
+    <string name="sort_by">Sort By</string>
+
+
+    <string-array name="profileTabnemes">
+        <item>POSTS</item>
+        <item>COMMENTS</item>
+        <item>ABOUT</item>
+    </string-array>
+
+    <string-array name="sortNames">
+        <item>MULTIS</item>
+        <item>FOLLOWINGS</item>
+        <item>SUBSCRIPTIONS</item>
+        <item>MODERATING</item>
+        <item>POPULARITY</item>
+    </string-array>
+
+</resources>

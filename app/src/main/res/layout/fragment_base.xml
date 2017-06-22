@@ -1,0 +1,14 @@
+<FrameLayout style="@style/layout_match_withoutpadding"
+             xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/fragment_layout_container"
+        style="@style/layout_match_withoutpadding"/>
+
+    <include
+        layout="@layout/include_progress"/>
+
+    <include
+        layout="@layout/include_error"/>
+
+</FrameLayout>

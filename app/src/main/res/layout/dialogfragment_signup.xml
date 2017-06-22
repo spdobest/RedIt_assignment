@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/linearLayoutRoot_signup"
+              style="@style/layout_match"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+    >
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilName_SignUp"
+        style="@style/layout_normal"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edittextNameSignUp"
+            style="@style/edittext_style_norml"
+            android:hint="Name"
+            android:inputType="textEmailAddress"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEMailId_SignUp"
+        style="@style/layout_normal"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edittextEmailSignUp"
+            style="@style/edittext_style_norml"
+            android:hint="Email Or UserId"
+            android:inputType="textEmailAddress"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEMobile_SignUp"
+        style="@style/layout_normal"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edittextMObileSignUp"
+            style="@style/edittext_style_norml"
+            android:hint="Mobile"
+            android:inputType="number"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEPwdId_SignUp"
+        style="@style/layout_normal"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edittextPasswordSignUp"
+            style="@style/edittext_style_norml"
+            android:hint="password"
+            android:inputType="textPassword"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/buttonLogin"
+        style="@style/buttonColoredStyle"
+        android:text="@string/register"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        />
+
+</LinearLayout>
