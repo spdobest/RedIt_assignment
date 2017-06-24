@@ -109,6 +109,7 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 		showProgress();
 
 
+
 		swiperefreshLayout.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {
@@ -118,6 +119,8 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 
 		commonRecyclerAdapter = new CommonRecyclerAdapter( childList, Constants.ROW_POPULAR_VIDEO, false, this );
 		recyclerViewPopular.setAdapter( commonRecyclerAdapter );
+
+		homeTabPresenter.getData();
 
 	}
 
@@ -213,7 +216,7 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 	@Override
 	public void onResume() {
 		super.onResume();
-		homeTabPresenter.getData();
+
 	}
 
 	@Override
@@ -228,10 +231,10 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 
 	@Override
 	public void onShareClick( Child child ) {
-		Intent shareIntent = new Intent( Intent.ACTION_SEND );
-		shareIntent.setType( "text/plain" );
-		shareIntent.putExtra( Intent.EXTRA_TEXT, child.getData().getUrl() );
-		startActivity( Intent.createChooser( shareIntent, "Share link using" ) );
+		Intent shareIntent = new Intent( Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+		shareIntent.putExtra(Intent.EXTRA_TEXT, child.getData().getUrl());
+		startActivity(Intent.createChooser(shareIntent, "Share link using"));
 	}
 
 	@Override

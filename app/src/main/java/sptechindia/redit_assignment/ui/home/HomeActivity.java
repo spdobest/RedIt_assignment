@@ -45,7 +45,8 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 	@Bind( R.id.main_content )
 	CoordinatorLayout  mainContent;
 
-	ApiService apiService;
+	ApiService   apiService;
+	HomeFragment homeFragment;
 
 	@Override
 	public void onBackPressed() {
@@ -88,15 +89,15 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 				break;
 			case R.id.imageViewHomeTab2:
 				changeBottomTabIconColor( Constants.BottomTab.TAB_COMMUNITIES );
-				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, CommunitiesFragment.newInstance(), HomeFragment.TAG ).commit();
+				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, CommunitiesFragment.newInstance(), HomeFragment.TAG ).addToBackStack( null ).commit();
 				break;
 			case R.id.imageViewHomeTab3:
 				changeBottomTabIconColor( Constants.BottomTab.TAB_EMAIL );
-				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, EmailFragment.newInstance(), EmailFragment.TAG ).commit();
+				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, EmailFragment.newInstance(), EmailFragment.TAG ).addToBackStack( null ).commit();
 				break;
 			case R.id.imageViewHomeTab4:
 				changeBottomTabIconColor( Constants.BottomTab.TAB_PROFILE );
-				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, ProfileFragment.newInstance(), HomeFragment.TAG ).commit();
+				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, ProfileFragment.newInstance(), HomeFragment.TAG ).addToBackStack( null ).commit();
 				break;
 		}
 	}
@@ -141,8 +142,12 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 
 
 	private void loadHomeFragment() {
+		if ( homeFragment == null ) {
+			homeFragment = HomeFragment.newInstance();
+		}
+
 		changeBottomTabIconColor( Constants.BottomTab.TAB_HOME );
-		getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, HomeFragment.newInstance(), HomeFragment.TAG ).commit();
+		getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, homeFragment, HomeFragment.TAG ).addToBackStack( null ).commit();
 
 	}
 

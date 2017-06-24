@@ -110,7 +110,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 	}
 
 	private void setupViewPager( ViewPager viewPager ) {
-		homePagerAdapter = new CommonPagerAdapter( getActivity().getSupportFragmentManager() );
+		homePagerAdapter = new CommonPagerAdapter( getChildFragmentManager() );
 		homePagerAdapter.addFragment( HomeTabbedFragment.newInstance( Constants.TAB_HOME ), Constants.TAB_HOME );
 		homePagerAdapter.addFragment( HomeTabbedFragment.newInstance( Constants.TAB_POPULAR ), Constants.TAB_POPULAR );
 		viewPager.setAdapter( homePagerAdapter );
