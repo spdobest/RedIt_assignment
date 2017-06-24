@@ -1,6 +1,7 @@
 package sptechindia.redit_assignment.ui.account.register.interactor;
 
 import android.content.Context;
+import android.os.Handler;
 
 import sptechindia.redit_assignment.ui.account.register.presenter.RegisterPresenterInterface;
 
@@ -11,18 +12,21 @@ import sptechindia.redit_assignment.ui.account.register.presenter.RegisterPresen
 public class RegisterInteractor implements RegisterInteractorInterface {
 
 	Context                    context;
-	RegisterPresenterInterface loginPresenterInterface;
+	RegisterPresenterInterface registerPresenterInterface;
 
 	public RegisterInteractor( Context context, RegisterPresenterInterface loginPresenterInterface ) {
 		this.context = context;
-		this.loginPresenterInterface = loginPresenterInterface;
+		this.registerPresenterInterface = loginPresenterInterface;
 	}
 
 	@Override
 	public void doRegister( String name,String emailId, String password,String mobileNumber  ) {
-		loginPresenterInterface.showProgress( "Please Wait..." );
-
-
-
+		registerPresenterInterface.showProgress( "Please Wait..." );
+		new Handler().postDelayed( new Runnable() {
+			@Override
+			public void run() {
+				registerPresenterInterface.setResult( true,"Register  Successfully" );
+			}
+		}, 3000 );
 	}
 }

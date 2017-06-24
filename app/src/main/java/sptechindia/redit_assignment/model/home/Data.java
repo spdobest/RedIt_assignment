@@ -13,6 +13,7 @@ public class Data {
     @SerializedName("children")
     @Expose
     private List<Child> children = null;
+
     @SerializedName("after")
     @Expose
     private String after;

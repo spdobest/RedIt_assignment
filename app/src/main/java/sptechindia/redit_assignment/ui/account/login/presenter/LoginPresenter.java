@@ -18,7 +18,7 @@ public class LoginPresenter implements LoginPresenterInterface {
 	ViewInterface   viewInterface;
 	LoginInteractor loginInteractor;
 
-	LoginPresenter( Context mContext, ViewInterface mViewInterface ) {
+	public LoginPresenter( Context mContext, ViewInterface mViewInterface ) {
 		this.context = mContext;
 		this.viewInterface = mViewInterface;
 		loginInteractor = new LoginInteractor( context, this );
@@ -45,6 +45,7 @@ public class LoginPresenter implements LoginPresenterInterface {
 				viewInterface.showError( Constants.ErrorType.INVALID_PASSWORD );
 			}
 			else {
+				viewInterface.showProgress( "Loading..." );
 				loginInteractor.doLogin( emailId, password );
 			}
 		}

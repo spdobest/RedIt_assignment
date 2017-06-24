@@ -3,6 +3,7 @@ package sptechindia.redit_assignment.ui.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
@@ -12,15 +13,13 @@ import android.widget.FrameLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
 import sptechindia.redit_assignment.R;
 import sptechindia.redit_assignment.base.BaseFragment;
-import sptechindia.redit_assignment.model.home.Child;
 import sptechindia.redit_assignment.network.ApiService;
-import sptechindia.redit_assignment.network.ServiceGenerator;
 import sptechindia.redit_assignment.ui.home.cominities.CommunitiesFragment;
 import sptechindia.redit_assignment.ui.home.email.EmailFragment;
 import sptechindia.redit_assignment.ui.home.profile.ProfileFragment;
+import sptechindia.redit_assignment.utility.CommonUtils;
 import sptechindia.redit_assignment.utility.Constants;
 import sptechindia.redit_assignment.utility.FragmentUtils;
 
@@ -28,7 +27,7 @@ import sptechindia.redit_assignment.utility.FragmentUtils;
  * Created by sibaprasad on 21/06/17.
  */
 
-public class HomeActivity extends AppCompatActivity implements BaseFragment.ToolbarListener {
+public class HomeActivity extends AppCompatActivity implements BaseFragment.ToolbarListener, CommonUtils.SnackbarCallback {
 
 	public static final String TAG = "HomeActivity";
 
@@ -49,6 +48,21 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 	ApiService apiService;
 
 	@Override
+	public void onBackPressed() {
+
+		Fragment fragment = getSupportFragmentManager().findFragmentById( R.id.containerHome );
+
+		if ( fragment instanceof HomeFragment ) {
+			super.onBackPressed();
+		}
+		else {
+			loadHomeFragment();
+		}
+
+
+	}
+
+	@Override
 	protected void onCreate( @Nullable Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.activity_home );
@@ -56,16 +70,13 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 		ButterKnife.bind( this );
 
 		fragmentUtils = new FragmentUtils( this );
+		apiService = new ApiService();
 
 		changeBottomTabIconColor( Constants.BottomTab.TAB_HOME );
 
+
 		getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, HomeFragment.newInstance(), HomeFragment.TAG ).commit();
 
-
-		apiService = new ApiService();
-
-		ApiService        client = ServiceGenerator.createService( ApiService.class);
-		final Call<Child> call   = client.getArticle();
 
 	}
 
@@ -73,8 +84,7 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 	public void onClick( View view ) {
 		switch ( view.getId() ) {
 			case R.id.imageViewHomeTab1:
-				changeBottomTabIconColor( Constants.BottomTab.TAB_HOME );
-				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, HomeFragment.newInstance(), HomeFragment.TAG ).commit();
+				loadHomeFragment();
 				break;
 			case R.id.imageViewHomeTab2:
 				changeBottomTabIconColor( Constants.BottomTab.TAB_COMMUNITIES );
@@ -82,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 				break;
 			case R.id.imageViewHomeTab3:
 				changeBottomTabIconColor( Constants.BottomTab.TAB_EMAIL );
-				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, EmailFragment.newInstance(), HomeFragment.TAG ).commit();
+				getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, EmailFragment.newInstance(), EmailFragment.TAG ).commit();
 				break;
 			case R.id.imageViewHomeTab4:
 				changeBottomTabIconColor( Constants.BottomTab.TAB_PROFILE );
@@ -127,6 +137,19 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.Tool
 				imageViewHomeTab4.setImageDrawable( ContextCompat.getDrawable( this, R.drawable.ic_account_selected ) );
 				break;
 		}
+	}
+
+
+	private void loadHomeFragment() {
+		changeBottomTabIconColor( Constants.BottomTab.TAB_HOME );
+		getSupportFragmentManager().beginTransaction().replace( R.id.containerHome, HomeFragment.newInstance(), HomeFragment.TAG ).commit();
 
 	}
+
+	@Override
+	public void onSnackbarActionClick() {
+
+	}
+
+
 }

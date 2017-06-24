@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:layout_alignParentBottom="true"
+              android:orientation="horizontal"
+              android:id="@+id/layoutFooterToolbar"
+    >
+
+    <LinearLayout
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:weightSum="4"
+        >
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageViewUp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/dimen_5dp"
+            app:srcCompat="@drawable/up_arrow"
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewUpDownCount"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="dasdasd"
+            />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageViewDown"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/dimen_5dp"
+            app:srcCompat="@drawable/down_arrow"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/dimen_0.5dp"
+        android:layout_height="@dimen/dimen_20dp"
+        android:layout_gravity="center_vertical"
+        android:background="#d3d3d3"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textViewComments"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/comment"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dimen_20dp"
+        android:paddingStart="@dimen/dimen_20dp"
+        android:text="Comment"
+        />
+
+    <View
+        android:layout_width="@dimen/dimen_0.5dp"
+        android:layout_height="@dimen/dimen_20dp"
+        android:layout_gravity="center_vertical"
+        android:background="#d3d3d3"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textViewShare"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/share"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dimen_20dp"
+        android:paddingStart="@dimen/dimen_20dp"
+        android:text="Share"
+        />
+</LinearLayout>

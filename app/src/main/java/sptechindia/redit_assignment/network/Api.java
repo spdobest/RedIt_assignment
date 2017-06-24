@@ -7,6 +7,8 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import sptechindia.redit_assignment.model.AccessToken;
 import sptechindia.redit_assignment.model.home.Child;
+import sptechindia.redit_assignment.model.home.Data;
+import sptechindia.redit_assignment.model.home.ModelParent;
 
 
 public interface Api {
@@ -17,7 +19,9 @@ public interface Api {
 	Call<AccessToken > getAccessToken();
 
     @GET("/.json")
-    public List<Child > getArticle();
+    public Call<Child>  getArticle();
 
+	@GET("/.json")
+	public Call<ModelParent>  getAllFeeds();
 
 }

@@ -27,5 +27,10 @@
     <color name="color_gray">#d3d3d3</color>
     <color name="colorCompany">#ff00ff</color>
     <color name="color_8a000000">#8a000000</color>
+    <color name="color_eceff1">#eceff1</color>
+    <color name="color_0d000000">#0d000000</color>
+    <color name="color_fbfbfb">#fbfbfb</color>
+    <color name="color_D3D3D3">#d3d3d3</color>
+    <color name="black">#000000</color>
 
 </resources>

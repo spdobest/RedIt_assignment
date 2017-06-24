@@ -18,7 +18,7 @@ public class RegisterPresenter implements RegisterPresenterInterface {
 	ViewInterface      viewInterface;
 	RegisterInteractor loginInteractor;
 
-	RegisterPresenter( Context mContext, ViewInterface mViewInterface ) {
+	public RegisterPresenter( Context mContext, ViewInterface mViewInterface ) {
 		this.context = mContext;
 		this.viewInterface = mViewInterface;
 		loginInteractor = new RegisterInteractor( context, this );
@@ -44,9 +44,9 @@ public class RegisterPresenter implements RegisterPresenterInterface {
 			else if ( TextUtils.isEmpty( password ) && password.length() < 6 ) {
 				viewInterface.showError( Constants.ErrorType.INVALID_PASSWORD );
 			}
-			else if ( TextUtils.isEmpty( mobileNumber ) && mobileNumber.length() < 10 ) {
+			/*else if ( TextUtils.isEmpty( mobileNumber ) && mobileNumber.length() < 10 ) {
 				viewInterface.showError( Constants.ErrorType.INVALID_MOBILE );
-			}
+			}*/
 			else if ( TextUtils.isEmpty( name )  ) {
 				viewInterface.showError( Constants.ErrorType.INVALID_NAME );
 			}

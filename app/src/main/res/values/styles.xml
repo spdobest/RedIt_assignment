@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/color_eceff1</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -31,6 +32,7 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowContentOverlay">@color/colorPrimaryDark</item>
         <item name="android:windowActionBarOverlay">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/color_eceff1</item>
     </style>
 
     <style name="styleDialogFragment">
@@ -43,6 +45,25 @@
         <item name="android:windowExitAnimation">@anim/slide_out_to_right</item>-->
         <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <!-- tablayout style-->
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">6dp</item>
+        <item name="tabPaddingEnd">6dp</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabTextAppearance">@style/CustomTabTexStyle</item>
+        <item name="tabSelectedTextColor">@color/colorAccent</item>
+    </style>
+
+
+    <style name="CustomTabTexStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@drawable/tab_title_selector</item>
+        <item name="textAllCaps">true</item>
+        ...
     </style>
 
 </resources>

@@ -4,14 +4,16 @@ package sptechindia.redit_assignment.model.home;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Child {
+import java.io.Serializable;
+
+public class Child implements Serializable{
 
     @SerializedName("kind")
     @Expose
     private String kind;
     @SerializedName("data")
     @Expose
-    private Data_ data;
+    private FeedData data;
 
     public String getKind() {
         return kind;
@@ -21,11 +23,11 @@ public class Child {
         this.kind = kind;
     }
 
-    public Data_ getData() {
+    public FeedData getData() {
         return data;
     }
 
-    public void setData(Data_ data) {
+    public void setData(FeedData      data) {
         this.data = data;
     }
 

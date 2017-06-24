@@ -5,45 +5,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarCommunities"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="@dimen/dimen_4dp"
-        android:background="#d3d3d3"
-        android:title="Communities"
-        android:titleTextColor="@color/blue"
-        >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textViewToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                tools:text="Toolbar"
-                android:textSize="18sp"
-                />
-
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/imageViewSort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_profile"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dimen_10dp"
-                />
-
-        </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
+    <include
+        android:id="@+id/includeLogin"
+        layout="@layout/toolbar_title_back"
+        />
 
 
     <include

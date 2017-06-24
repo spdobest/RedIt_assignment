@@ -1,6 +1,7 @@
 package sptechindia.redit_assignment.ui.account.login.interactor;
 
 import android.content.Context;
+import android.os.Handler;
 
 import sptechindia.redit_assignment.ui.account.login.presenter.LoginPresenterInterface;
 
@@ -21,7 +22,12 @@ public class LoginInteractor implements LoginInteractorInterface {
 	@Override
 	public void doLogin( String email, String password ) {
 		loginPresenterInterface.showProgress( "Please Wait..." );
-
+		new Handler().postDelayed( new Runnable() {
+			@Override
+			public void run() {
+				loginPresenterInterface.setResult( true,"Logged In Successfully" );
+			}
+		}, 3000 );
 
 
 	}

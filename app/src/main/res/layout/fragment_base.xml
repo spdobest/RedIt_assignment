@@ -3,7 +3,8 @@
 
     <FrameLayout
         android:id="@+id/fragment_layout_container"
-        style="@style/layout_match_withoutpadding"/>
+        style="@style/layout_match_withoutpadding"
+        />
 
     <include
         layout="@layout/include_progress"/>

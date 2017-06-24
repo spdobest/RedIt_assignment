@@ -20,29 +20,36 @@ import java.util.Arrays;
 import java.util.List;
 
 import sptechindia.redit_assignment.R;
+import sptechindia.redit_assignment.adapter.CommonRecyclerAdapter;
+import sptechindia.redit_assignment.adapter.SortListAdapter;
 import sptechindia.redit_assignment.base.BaseFragment;
-import sptechindia.redit_assignment.ui.adapter.CommonRecycleAdapter;
-import sptechindia.redit_assignment.ui.adapter.SortListAdapter;
+import sptechindia.redit_assignment.controllers.OnRecyclerItemClickListener;
+import sptechindia.redit_assignment.model.ModelText;
+import sptechindia.redit_assignment.model.home.Child;
+import sptechindia.redit_assignment.utility.Constants;
 
 /**
  * Created by sibaprasad on 22/06/17.
  */
 
-public class CommunitiesFragment extends BaseFragment implements View.OnClickListener{
+public class CommunitiesFragment extends BaseFragment implements View.OnClickListener,OnRecyclerItemClickListener {
 
 	public static final String TAG = "CommunitiesFragment";
+	Toolbar               toolbarCommunities;
 	// widgut declaration
-
-	Toolbar         toolbarCommunities;
-	SortListAdapter sortListAdapter;
-	String[]        sortNames;
+	SortListAdapter       sortListAdapter;
+	String[]              sortNames;
 	//
-	View            rootView;
-	int             sortListPosition;
-	AppCompatImageView imageViewSort;
+	View                  rootView;
+	int                   sortListPosition;
+	AppCompatImageView    imageViewSort;
+	AppCompatImageView    imageViewBackToolbar;
+	AppCompatTextView     textViewTitleToolbarWithBack;
+	AppCompatImageView    imageViewShare;
+	RecyclerView          recycler_view;
+	CommonRecyclerAdapter commonRecyclerAdapter;
+	private List< Object > listData = new ArrayList<>();
 	private BottomSheetDialog bottomSheetDialog;
-
-	RecyclerView recycler_view;
 
 	public static CommunitiesFragment newInstance() {
 
@@ -72,12 +79,14 @@ public class CommunitiesFragment extends BaseFragment implements View.OnClickLis
 
 	@Override
 	public void initView( View rootView ) {
-		toolbarCommunities = ( Toolbar ) rootView.findViewById( R.id.toolbarCommunities );
-		toolbarCommunities.setTitle( getActivity().getResources().getString( R.string.communities ) );
+		toolbarCommunities = ( Toolbar ) rootView.findViewById( R.id.toolbarWithTitleAndBack );
+		imageViewBackToolbar = ( AppCompatImageView ) rootView.findViewById( R.id.imageViewBackToolbar );
+		textViewTitleToolbarWithBack = ( AppCompatTextView ) rootView.findViewById( R.id.textViewTitleToolbarWithBack );
+		imageViewShare = ( AppCompatImageView ) rootView.findViewById( R.id.imageViewShare );
+		textViewTitleToolbarWithBack.setText( getActivity().getResources().getString( R.string.communities ) );
 		imageViewSort = ( AppCompatImageView ) rootView.findViewById( R.id.imageViewSort );
-		((AppCompatTextView)rootView.findViewById( R.id.textViewToolbar )).setText( "Communities" );
-		recycler_view = ( RecyclerView ) rootView.findViewById( R.id.recycler_view  );
-
+		recycler_view = ( RecyclerView ) rootView.findViewById( R.id.recycler_view );
+		imageViewBackToolbar.setVisibility( View.GONE );
 		setUPList();
 	}
 
@@ -116,23 +125,55 @@ public class CommunitiesFragment extends BaseFragment implements View.OnClickLis
 
 	@Override
 	public void onClick( View view ) {
-		switch ( view.getId() ){
-			case R.id.imageViewSort :
+		switch ( view.getId() ) {
+			case R.id.imageViewSort:
 				openSortBottomSheetDialog();
 				break;
 		}
 	}
-	void setUPList(){
-		recycler_view.setLayoutManager(new LinearLayoutManager( getActivity()));
-		CommonRecycleAdapter adapter = new CommonRecycleAdapter( createItemList());
-		recycler_view.setAdapter(adapter);
+
+	void setUPList() {
+		recycler_view.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+		createItemList();
+//		CommonRecycleAdapter adapter = new CommonRecycleAdapter( createItemList());
+//		recycler_view.setAdapter(adapter);
 	}
 
-	private List<String> createItemList() {
-		List<String> itemList = new ArrayList<>();
-		for(int i=0;i<30;i++) {
-			itemList.add("Item "+i);
-		}
-		return itemList;
+	private void createItemList() {
+
+		listData.add( new ModelText( "All", Constants.ROW_TEXT ) );
+		listData.add( new ModelText( "MULTIS", Constants.ROW_TEXT ) );
+		listData.add( new ModelText( "FOLLOWING", Constants.ROW_TEXT ) );
+		listData.add( new ModelText( "SUBSCRIPTION", Constants.ROW_TEXT ) );
+		listData.add( new ModelText( "MODERATING", Constants.ROW_TEXT ) );
+
+
+		commonRecyclerAdapter = new CommonRecyclerAdapter( listData, Constants.ROW_TEXT,true ,this);
+		recycler_view.setAdapter( commonRecyclerAdapter );
+	}
+
+	@Override
+	public void onCommentClick( Child child ) {
+
+	}
+
+	@Override
+	public void onFeedClick( Child child ) {
+
+	}
+
+	@Override
+	public void onShareClick( Child child ) {
+
+	}
+
+	@Override
+	public void onUpClick( Child child ) {
+
+	}
+
+	@Override
+	public void onDownClick( Child child ) {
+
 	}
 }

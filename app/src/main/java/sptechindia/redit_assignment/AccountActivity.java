@@ -10,11 +10,12 @@ import android.view.View;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import sptechindia.redit_assignment.controllers.LoginRegisterCLickListener;
 import sptechindia.redit_assignment.ui.account.login.view.LoginDialogFragment;
 import sptechindia.redit_assignment.ui.account.register.view.SignupDialogFragment;
 import sptechindia.redit_assignment.ui.home.HomeActivity;
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity implements LoginRegisterCLickListener{
 
 	@Bind( R.id.textViewSkipNow )
 	AppCompatTextView textViewSkipNow;
@@ -38,13 +39,21 @@ public class AccountActivity extends AppCompatActivity {
 				finish();
 				break;
 			case R.id.buttonLogin_welcome:
-				LoginDialogFragment.newInstance( 1 ).show( getSupportFragmentManager(), LoginDialogFragment.TAG );
-
+				onLoginClick();
 				break;
 			case R.id.buttonRegister_welcome:
-				SignupDialogFragment.newInstance( 1, false ).show( getSupportFragmentManager(), SignupDialogFragment.TAG );
-
+				onRegisterClick();
 				break;
 		}
+	}
+
+	@Override
+	public void onLoginClick() {
+		LoginDialogFragment.newInstance( 1 ).show( getSupportFragmentManager(), LoginDialogFragment.TAG );
+	}
+
+	@Override
+	public void onRegisterClick() {
+		SignupDialogFragment.newInstance( 1, false ).show( getSupportFragmentManager(), SignupDialogFragment.TAG );
 	}
 }

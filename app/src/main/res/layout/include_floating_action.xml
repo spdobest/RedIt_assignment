@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout android:id="@+id/coordinateLayoutActionRoot"
+                                                 xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:layout_gravity="bottom|right|end"
+                                                 android:layout_marginBottom="70dp"
+                                                 android:orientation="vertical"
+                                                 android:paddingEnd="@dimen/dimen_10dp"
+                                                 android:paddingRight="@dimen/dimen_10dp"
+                                                 android:visibility="gone"
+                                                 tools:visibility="visible"
+
+    >
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:gravity="right|end"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/llAction1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_5dp"
+            >
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:alpha="0.7"
+                android:background="@drawable/rounded_corner_textview"
+                android:padding="@dimen/dimen_5dp"
+                android:text="  Post an Image  "
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:tint="@android:color/white"
+                app:fabSize="normal"
+                app:srcCompat="@android:drawable/ic_input_add"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAction2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical|right|end"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_5dp"
+            >
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:alpha="0.7"
+                android:background="@drawable/rounded_corner_textview"
+                android:padding="@dimen/dimen_5dp"
+                android:text=" Post Some Text "
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:clickable="true"
+                android:tint="@android:color/white"
+                app:fabSize="normal"
+                app:srcCompat="@android:drawable/ic_input_add"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAction3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_5dp"
+            >
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:alpha="0.7"
+                android:background="@drawable/rounded_corner_textview"
+                android:padding="@dimen/dimen_5dp"
+                android:text=" Post a Link "
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:tint="@android:color/white"
+                app:fabSize="normal"
+                app:srcCompat="@android:drawable/ic_input_add"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

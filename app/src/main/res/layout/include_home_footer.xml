@@ -4,10 +4,10 @@
               android:layout_width="match_parent"
               android:layout_height="?attr/actionBarSize"
               android:layout_gravity="bottom"
-              android:background="@color/color_gray"
               android:gravity="center_vertical"
               android:orientation="horizontal"
               android:weightSum="4"
+              android:background="@drawable/boarder_gray_one_dp"
     >
 
     <android.support.v7.widget.AppCompatImageView

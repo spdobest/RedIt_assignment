@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView style="@style/cardViewStyle"
+                                    xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_height="150dp"
+                                    android:orientation="vertical"
+                                    card_view:cardBackgroundColor="@android:color/white"
+                                    card_view:cardElevation="2dp"
+                                    card_view:cardUseCompatPadding="true"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:background="?attr/selectableItemBackground" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_5dp"
+        >
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewTitleMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sample Title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_18sp"
+            android:textStyle="bold"
+
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewDescMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="message message message message message message message message message message message message"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_18sp"
+            tools:text="message message message message message message"
+            android:layout_above="@+id/tvTime"
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Testing"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_12sp"
+            android:layout_above="@+id/layoutInc"
+            />
+
+        <include
+            android:id="@+id/layoutInc"
+            layout="@layout/include_footer_popular_item"
+
+            />
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -13,12 +13,24 @@
     <string name="skipNow">Skip For Now</string>
     <string name="communities">Communities</string>
     <string name="sort_by">Sort By</string>
+    <string name="newuserUser">new user ? Sign up.</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="signup">SignUp</string>
+    <string name="explore_popular">Explore Popular Communities</string>
 
 
     <string-array name="profileTabnemes">
         <item>POSTS</item>
         <item>COMMENTS</item>
         <item>ABOUT</item>
+    </string-array>
+
+    <string-array name="shortNames">
+        <item>Hot</item>
+        <item>New</item>
+        <item>Top</item>
+        <item>Controversial</item>
     </string-array>
 
     <string-array name="sortNames">
@@ -28,5 +40,9 @@
         <item>MODERATING</item>
         <item>POPULARITY</item>
     </string-array>
+
+    <string name="welcomeMessage"> Theres a Redit community \n for every topic imaginable</string>
+    <string name="voteMessage">on posts and help \n communities lift the best \n content to the top !</string>
+    <string name="subscribeMessage"> to communities  to fill this \n home feed with fresh posts</string>
 
 </resources>

@@ -21,23 +21,21 @@ import sptechindia.redit_assignment.R;
 /**
  * Created by sibaprasad on 20/06/17.
  */
- public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
 	protected String          mRequestTag;
 	protected ToolbarListener mToolbarListener;
 	@Bind( R.id.fragment_layout_container )
 	FrameLayout       fragmentLayoutContainer;
-	@Bind( R.id.progressbarLoading )
-	ProgressBar       progressbarLoading;
 	@Bind( R.id.flProgresRoot )
 	FrameLayout       flProgresRoot;
 	@Bind( R.id.textViewErrorTitle )
 	AppCompatTextView textViewErrorTitle;
 	@Bind( R.id.rlErrorRoot )
 	RelativeLayout    rlErrorRoot;
+	ProgressBar progressbarLoading;
 	private ProgressBar mProgressBar;
 	private int         mLayoutId;
-
 
 	public BaseFragment() {
 		// Required empty public constructor
@@ -84,12 +82,15 @@ import sptechindia.redit_assignment.R;
 	}
 
 
+
+
 	@Nullable
 	@Override
 	public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState ) {
 		View view = inflater.inflate( R.layout.fragment_base, container, false );
 		ButterKnife.bind( this, view );
 		inflater.inflate( mLayoutId, fragmentLayoutContainer );
+		progressbarLoading = ( ProgressBar ) view.findViewById( R.id.progressbarLoading );
 		return view;
 	}
 
@@ -109,12 +110,12 @@ import sptechindia.redit_assignment.R;
 		ButterKnife.unbind( this );
 	}
 
+	public abstract void initView(View rootView);
+
+	public abstract void setClickListener();
 	public interface ToolbarListener {
 		void setToolbarTitle( String title );
 		void setToolbarVisibility( int value );
 		void setToolbar();
 	}
-
-	public abstract void initView(View rootView);
-	public abstract void setClickListener();
 }

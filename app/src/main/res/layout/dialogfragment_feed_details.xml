@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout style="@style/cardViewStyle"
+                                    xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    android:layout_height="match_parent"
+                                    card_view:cardBackgroundColor="@android:color/white"
+                                    card_view:cardElevation="2dp"
+                                    card_view:cardUseCompatPadding="true"
+                                                 android:id="@+id/coordinateLayoutRootFeedDetails"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            layout="@layout/toolbar_title_back"/>
+
+        <include
+            layout="@layout/include_pupular_middle_portion"/>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

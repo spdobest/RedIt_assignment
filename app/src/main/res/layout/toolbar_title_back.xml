@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbarWithTitleAndBack"
+    style="@style/toolbarStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_alignParentTop="true"
+    android:contentInsetEnd="0dp"
+    android:contentInsetLeft="0dp"
+    android:contentInsetRight="0dp"
+    android:contentInsetStart="0dp"
+    app:contentInsetEnd="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetStart="0dp"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:layout_collapseMode="parallax"
+    app:layout_scrollFlags="scroll|enterAlways|snap"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageViewBackToolbar"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dimen_8dp"
+            app:srcCompat="@drawable/ic_back_arrow"
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewTitleToolbarWithBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_toEndOf="@+id/imageViewBackToolbar"
+            android:layout_toRightOf="@+id/imageViewBackToolbar"
+            android:layout_weight="1"
+            android:text="Title"
+            android:textSize="@dimen/dimen_20sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageViewShare"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|end"
+            android:padding="@dimen/dimen_8dp"
+            app:srcCompat="@drawable/share_icon"
+            />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageViewSort"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|end"
+            android:padding="@dimen/dimen_8dp"
+            app:srcCompat="@drawable/ic_short_text_black_24dp"
+            />
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import sptechindia.redit_assignment.R;
+import sptechindia.redit_assignment.adapter.CommonPagerAdapter;
 import sptechindia.redit_assignment.base.BaseFragment;
-import sptechindia.redit_assignment.ui.adapter.MainPagerAdapter;
+import sptechindia.redit_assignment.ui.profile.AccountTabbedFragment;
+import sptechindia.redit_assignment.utility.Constants;
 
 /**
  * Created by sibaprasad on 22/06/17.
@@ -24,11 +26,8 @@ public class ProfileFragment extends BaseFragment {
 	private static final String TAG = "ProfileFragment";
 
 	//rootview
-	View rootView;
-
-	String[] tabNames;
-
-	MainPagerAdapter        adapter;
+	View                    rootView;
+	CommonPagerAdapter      commonPagerAdapter;
 	TabLayout               tabProfile;
 	Toolbar                 toolbarProfile;
 	CollapsingToolbarLayout collapse_toolbar;
@@ -47,8 +46,6 @@ public class ProfileFragment extends BaseFragment {
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
-
-		tabNames = getResources().getStringArray( R.array.profileTabnemes );
 	}
 
 	@Nullable
@@ -80,8 +77,17 @@ public class ProfileFragment extends BaseFragment {
 	}
 
 	void setUpTabs() {
-		adapter = new MainPagerAdapter( getActivity().getSupportFragmentManager(), tabNames, tabNames.length );
-		pagerProfile.setAdapter( adapter );
+		commonPagerAdapter = new CommonPagerAdapter( getActivity().getSupportFragmentManager() );
+		commonPagerAdapter.addFragment( AccountTabbedFragment.newInstance( Constants.TAB_POSTS ), "POSTS" );
+		commonPagerAdapter.addFragment( AccountTabbedFragment.newInstance( Constants.TAB_COMMENTS ), "COMMENTS" );
+		commonPagerAdapter.addFragment( AccountTabbedFragment.newInstance( Constants.TAB_ABOUT ), "ABOUT" );
+
+//		commonPagerAdapter.addFragment( PostFragment.newInstance(), "POSTS" );
+//		commonPagerAdapter.addFragment( CommentFragment.newInstance(), "COMMENTS" );
+//		commonPagerAdapter.addFragment( AboutFragment.newInstance(), "ABOUT" );
+
+
+		pagerProfile.setAdapter( commonPagerAdapter );
 		tabProfile.setupWithViewPager( pagerProfile );
 	}
 }
