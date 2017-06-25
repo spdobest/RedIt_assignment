@@ -184,12 +184,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 				collapseFabMenu();
 				break;
 			case R.id.llAction1:
+				collapseFabMenu();
 				CommonUtils.showSnackBar( main_content, "Feed Add Action", Snackbar.LENGTH_SHORT );
 				break;
 			case R.id.llAction2:
+				collapseFabMenu();
 				CommonUtils.showSnackBar( main_content, "Feed Remove Action", Snackbar.LENGTH_SHORT );
 				break;
 			case R.id.llAction3:
+				collapseFabMenu();
 				CommonUtils.showSnackBar( main_content, "Feed Suscribe Action", Snackbar.LENGTH_SHORT );
 				break;
 
