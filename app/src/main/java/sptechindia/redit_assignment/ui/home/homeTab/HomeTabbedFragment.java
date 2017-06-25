@@ -28,6 +28,7 @@ import sptechindia.redit_assignment.adapter.CommonRecyclerAdapter;
 import sptechindia.redit_assignment.adapter.SortListAdapter;
 import sptechindia.redit_assignment.base.BaseFragment;
 import sptechindia.redit_assignment.controllers.OnRecyclerItemClickListener;
+import sptechindia.redit_assignment.model.ModelVideo;
 import sptechindia.redit_assignment.model.home.Child;
 import sptechindia.redit_assignment.ui.home.FeedDetailDialogFragment;
 import sptechindia.redit_assignment.ui.home.homeTab.presenter.HomeTabPresenter;
@@ -58,7 +59,8 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 	int sortListPosition = 0;
 	String[] sortNames;
 
-	ProgressDialog progressDialog;
+	ProgressDialog      progressDialog;
+	LinearLayoutManager linearLayoutManager;
 
 	String tabTitle;
 
@@ -102,12 +104,13 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 	public void initView( View rootView ) {
 		recyclerViewPopular = ( RecyclerView ) rootView.findViewById( R.id.recyclerViewPopular );
 		swiperefreshLayout = ( SwipeRefreshLayout ) rootView.findViewById( R.id.swiperefreshLayout );
-		recyclerViewPopular.setLayoutManager( new LinearLayoutManager( getActivity(), LinearLayoutManager.VERTICAL, false ) );
+
+		linearLayoutManager = new LinearLayoutManager( getActivity(), LinearLayoutManager.VERTICAL, false );
+		recyclerViewPopular.setLayoutManager( linearLayoutManager );
 		textViewShort = ( AppCompatTextView ) rootView.findViewById( R.id.textViewShort );
 
 		textViewShort.setOnClickListener( this );
 		showProgress();
-
 
 
 		swiperefreshLayout.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {
@@ -117,10 +120,28 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 			}
 		} );
 
-		commonRecyclerAdapter = new CommonRecyclerAdapter( childList, Constants.ROW_POPULAR_VIDEO, false, this );
+		commonRecyclerAdapter = new CommonRecyclerAdapter( childList, Constants.ROW_POPULAR_GIF, false, this );
 		recyclerViewPopular.setAdapter( commonRecyclerAdapter );
 
 		homeTabPresenter.getData();
+
+		recyclerViewPopular.addOnScrollListener( new RecyclerView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged( RecyclerView recyclerView, int newState ) {
+				super.onScrollStateChanged( recyclerView, newState );
+
+				if ( newState == RecyclerView.SCROLL_STATE_IDLE ) {
+					int firstVisiblePosition = linearLayoutManager.findFirstVisibleItemPosition();
+					commonRecyclerAdapter.setVisiblePosition( firstVisiblePosition );
+				}
+
+			}
+
+			@Override
+			public void onScrolled( RecyclerView recyclerView, int dx, int dy ) {
+				super.onScrolled( recyclerView, dx, dy );
+			}
+		} );
 
 	}
 
@@ -144,6 +165,7 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 		Log.i( TAG, "getData: " + listChild );
 
 		childList.clear();
+	//	childList.add( new ModelVideo( "Spm", "asdadas", "asda", "asdasd" ) );
 		for ( Child child : listChild ) {
 			childList.add( child );
 		}
@@ -231,10 +253,10 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 
 	@Override
 	public void onShareClick( Child child ) {
-		Intent shareIntent = new Intent( Intent.ACTION_SEND);
-		shareIntent.setType("text/plain");
-		shareIntent.putExtra(Intent.EXTRA_TEXT, child.getData().getUrl());
-		startActivity(Intent.createChooser(shareIntent, "Share link using"));
+		Intent shareIntent = new Intent( Intent.ACTION_SEND );
+		shareIntent.setType( "text/plain" );
+		shareIntent.putExtra( Intent.EXTRA_TEXT, child.getData().getUrl() );
+		startActivity( Intent.createChooser( shareIntent, "Share link using" ) );
 	}
 
 	@Override

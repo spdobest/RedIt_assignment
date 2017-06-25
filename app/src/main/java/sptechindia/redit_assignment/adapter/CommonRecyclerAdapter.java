@@ -1,28 +1,29 @@
 package sptechindia.redit_assignment.adapter;
 
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 import sptechindia.redit_assignment.R;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderDefault;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderFooter;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderHeader;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderImage;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderImageWithText;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderManager;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderMessage;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderPopularGif;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderPopularImage;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderPopularImageWithText;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderPopularText;
+import sptechindia.redit_assignment.adapter.viewholder.ViewHolderVideo;
 import sptechindia.redit_assignment.controllers.OnRecyclerItemClickListener;
 import sptechindia.redit_assignment.model.ModelHeader;
-import sptechindia.redit_assignment.model.ModelImage;
-import sptechindia.redit_assignment.model.ModelImageText;
-import sptechindia.redit_assignment.model.ModelMessage;
 import sptechindia.redit_assignment.model.ModelText;
+import sptechindia.redit_assignment.model.ModelVideo;
 import sptechindia.redit_assignment.model.home.Child;
 import sptechindia.redit_assignment.utility.Constants;
 
@@ -39,6 +40,7 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 	boolean        isRowPreFixed;
 
 	OnRecyclerItemClickListener onRecyclerItemClickListener;
+	int visiblePosition = -1;
 
 
 	public CommonRecyclerAdapter( List< Object > objectList, int rowType, boolean isRowPreFixed, OnRecyclerItemClickListener onRecyclerItemClickListener ) {
@@ -87,11 +89,11 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 
 				break;
 
-			case Constants.ROW_POPULAR_VIDEO:
+			case Constants.ROW_POPULAR_GIF:
 
 				view = inflater
 						.inflate( R.layout.row_item_popular_gif, parent, false );
-				holder = new ViewHolderVideo( view );
+				holder = new ViewHolderPopularGif( view );
 
 				break;
 
@@ -150,9 +152,8 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 			case Constants.ROW_HEADER:
 				final ViewHolderHeader viewHolderHeader = ( ViewHolderHeader ) holder;
 				ModelHeader modelHeader = ( ModelHeader ) object;
+				viewHolderHeader.setData( modelHeader );
 
-				viewHolderHeader.textViewNameHeader.setText( modelHeader.textTitle );
-				viewHolderHeader.textViewCommentHeader.setText( modelHeader.comment );
 				break;
 			case Constants.ROW_FOOTER:
 				final ViewHolderFooter viewHolderFooter = ( ViewHolderFooter ) holder;
@@ -163,25 +164,6 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 
 				final Child child = ( Child ) object;
 
-				viewHolderPopularImageWithText.textViewTitleImageWithText.setText( child.getData().getTitle() );
-				viewHolderPopularImageWithText.textViewUpDownCount.setText( "" + child.getData().getViewCount() );
-				viewHolderPopularImageWithText.textViewPopularFeedName.setText( child.getData().getName() );
-
-				if ( child != null && child.getData() != null && child.getData().getPreview() != null && child.getData().getPreview().getImages() != null && child.getData().getPreview().getImages().size() > 0 ) {
-
-					Glide.with( viewHolderPopularImageWithText.imageViewImageWithText.getContext() ).load( child.getData().getPreview().getImages().get( 0 ).getSource().getUrl() )
-							.thumbnail( 0.5f )
-							.crossFade()
-							.diskCacheStrategy( DiskCacheStrategy.ALL )
-							.into( viewHolderPopularImageWithText.imageViewImageWithText );
-				}
-				else {
-					Glide.with( viewHolderPopularImageWithText.imageViewImageWithText.getContext() ).load( child.getData().getThumbnail() )
-							.thumbnail( 0.5f )
-							.crossFade()
-							.diskCacheStrategy( DiskCacheStrategy.ALL )
-							.into( viewHolderPopularImageWithText.imageViewImageWithText );
-				}
 
 				viewHolderPopularImageWithText.textViewComments.setOnClickListener( new View.OnClickListener() {
 					@Override
@@ -212,56 +194,36 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 				} );
 
 				break;
-			case Constants.ROW_POPULAR_VIDEO:
-				final ViewHolderVideo viewHolderVideo = ( ViewHolderVideo ) holder;
-				final Child child3 = ( Child ) object;
+			case Constants.ROW_POPULAR_GIF:
+				final ViewHolderPopularGif viewHolderPopularGif = ( ViewHolderPopularGif ) holder;
+				final Child childDataVideo = ( Child ) object;
+				viewHolderPopularGif.setData( childDataVideo );
 
-				viewHolderVideo.textViewPopularTitle.setText( child3.getData().getTitle() );
-				viewHolderVideo.textViewUpDownCount.setText( "" + child3.getData().getViewCount() );
-				viewHolderVideo.textViewPopularFeedName.setText( child3.getData().getName() );
-
-				if ( child3 != null && child3.getData() != null && child3.getData().getPreview() != null && child3.getData().getPreview().getImages() != null && child3.getData().getPreview().getImages().size() > 0 ) {
-
-					Glide.with( viewHolderVideo.imageViewPopular.getContext() ).load( child3.getData().getPreview().getImages().get( 0 ).getSource().getUrl() )
-							.thumbnail( 0.5f )
-							.crossFade()
-							.diskCacheStrategy( DiskCacheStrategy.ALL )
-							.into( viewHolderVideo.imageViewPopular );
-				}
-				else {
-					Glide.with( viewHolderVideo.imageViewPopular.getContext() ).load( "http://www.gstatic.com/webp/gallery/1.jpg" )
-							.thumbnail( 0.5f )
-							.crossFade()
-							.diskCacheStrategy( DiskCacheStrategy.ALL )
-							.into( viewHolderVideo.imageViewPopular );
-				}
-
-
-				viewHolderVideo.textViewComments.setOnClickListener( new View.OnClickListener() {
+				viewHolderPopularGif.textViewComments.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onCommentClick( child3 );
+						onRecyclerItemClickListener.onCommentClick( childDataVideo );
 					}
 				} );
 
-				viewHolderVideo.textViewShare.setOnClickListener( new View.OnClickListener() {
+				viewHolderPopularGif.textViewShare.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onShareClick( child3 );
+						onRecyclerItemClickListener.onShareClick( childDataVideo );
 					}
 				} );
 
-				viewHolderVideo.imageViewDown.setOnClickListener( new View.OnClickListener() {
+				viewHolderPopularGif.imageViewDown.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onShareClick( child3 );
+						onRecyclerItemClickListener.onShareClick( childDataVideo );
 					}
 				} );
 
-				viewHolderVideo.itemView.setOnClickListener( new View.OnClickListener() {
+				viewHolderPopularGif.itemView.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onFeedClick( child3 );
+						onRecyclerItemClickListener.onFeedClick( childDataVideo );
 					}
 				} );
 
@@ -269,54 +231,35 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 			case Constants.ROW_POPULAR_IMAGE:
 				final ViewHolderPopularImage viewHolderPopularImage = ( ViewHolderPopularImage ) holder;
 
-				final Child child1 = ( Child ) object;
+				final Child childData = ( Child ) object;
 
-				viewHolderPopularImage.textViewPopularTitle.setText( child1.getData().getName() );
-				viewHolderPopularImage.textViewUpDownCount.setText( "" + child1.getData().getViewCount() );
-				viewHolderPopularImage.textViewPopularFeedName.setText( child1.getData().getTitle() );
-
-				if ( child1 != null && child1.getData() != null && child1.getData().getPreview() != null && child1.getData().getPreview().getImages() != null && child1.getData().getPreview().getImages().size() > 0 ) {
-
-					Glide.with( viewHolderPopularImage.imageViewPopular.getContext() ).load( child1.getData().getPreview().getImages().get( 0 ).getSource().getUrl() )
-							.thumbnail( 0.5f )
-							.crossFade()
-							.diskCacheStrategy( DiskCacheStrategy.ALL )
-							.into( viewHolderPopularImage.imageViewPopular );
-				}
-				else {
-					Glide.with( viewHolderPopularImage.imageViewPopular.getContext() ).load( "http://www.gstatic.com/webp/gallery/1.jpg" )
-							.thumbnail( 0.5f )
-							.crossFade()
-							.diskCacheStrategy( DiskCacheStrategy.ALL )
-							.into( viewHolderPopularImage.imageViewPopular );
-				}
-
+				viewHolderPopularImage.setData( childData );
 
 				viewHolderPopularImage.textViewComments.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onCommentClick( child1 );
+						onRecyclerItemClickListener.onCommentClick( childData );
 					}
 				} );
 
 				viewHolderPopularImage.textViewShare.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onShareClick( child1 );
+						onRecyclerItemClickListener.onShareClick( childData );
 					}
 				} );
 
 				viewHolderPopularImage.imageViewDown.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onShareClick( child1 );
+						onRecyclerItemClickListener.onShareClick( childData );
 					}
 				} );
 
 				viewHolderPopularImage.itemView.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View view ) {
-						onRecyclerItemClickListener.onFeedClick( child1 );
+						onRecyclerItemClickListener.onFeedClick( childData );
 					}
 				} );
 
@@ -342,15 +285,16 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 				break;
 			case Constants.ROW_IMAGE:
 				final ViewHolderImage viewHolderImage = ( ViewHolderImage ) holder;
-				Glide.with( viewHolderImage.imageViewItem.getContext() ).load( "http://www.gstatic.com/webp/gallery/1.jpg" )
-						.thumbnail( 0.5f )
-						.crossFade()
-						.diskCacheStrategy( DiskCacheStrategy.ALL )
-						.into( viewHolderImage.imageViewItem );
+				viewHolderImage.setData( object );
 
 				break;
 			case Constants.ROW_VIDEO:
-				final ViewHolderVideo viewHolderVideo1 = ( ViewHolderVideo ) holder;
+				final ViewHolderVideo viewHolderVideo = ( ViewHolderVideo ) holder;
+				ModelVideo modelVideo = ( ModelVideo ) object;
+				viewHolderVideo.setData( modelVideo );
+				if ( position == visiblePosition ) {
+					viewHolderVideo.setupVideoView();
+				}
 
 				break;
 			case Constants.ROW_DEFAULT:
@@ -367,37 +311,7 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 			return rowType;
 		}
 		else {
-			Object object = objectList.get( position );
-
-			if ( object instanceof ModelText ) {
-				rowType = Constants.ROW_TEXT;
-			}
-			else if ( object instanceof ModelImageText ) {
-				rowType = Constants.ROW_IMAGE_WITH_TEXT;
-			}
-			else if ( object instanceof ModelMessage ) {
-				rowType = Constants.ROW_MESSAGE;
-			}
-			else if ( object instanceof ModelImage ) {
-				rowType = Constants.ROW_IMAGE;
-			}
-			else if ( object instanceof Child ) {
-				Child feedData = ( Child ) object;
-
-				if ( feedData != null && feedData.getData() != null && feedData.getData().getPreview() != null && feedData.getData().getPreview().getImages() != null && feedData.getData().getPreview().getImages().size() > 0 ) {
-					rowType = Constants.ROW_POPULAR_VIDEO;
-				}
-				else {
-					rowType = Constants.ROW_POPULAR_IMAGE_WITH_TEXT;
-				}
-			}
-			else if ( object instanceof ModelImage ) {
-				rowType = 3;
-			}
-			else if ( object instanceof ModelImage ) {
-				rowType = 3;
-			}
-
+			rowType = ViewHolderManager.getRowType( objectList.get( position ) );
 		}
 		return rowType;
 	}
@@ -407,205 +321,8 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter< RecyclerView.Vi
 		return objectList.size();
 	}
 
-
-	public class ViewHolderHeader extends RecyclerView.ViewHolder {
-		@Bind( R.id.textViewName_header )
-		AppCompatTextView textViewNameHeader;
-		@Bind( R.id.textViewComment_header )
-		AppCompatTextView textViewCommentHeader;
-
-		public ViewHolderHeader( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
+	public void setVisiblePosition( int completelyVisibleposition ) {
+		this.visiblePosition = completelyVisibleposition;
+		notifyDataSetChanged();
 	}
-
-	public class ViewHolderPopularImageWithText extends RecyclerView.ViewHolder {
-		@Bind( R.id.profile_image )
-		CircleImageView    profileImage;
-		@Bind( R.id.textViewPopularFeedName )
-		AppCompatTextView  textViewPopularFeedName;
-		@Bind( R.id.textViewPopularTime )
-		AppCompatTextView  textViewPopularTime;
-		@Bind( R.id.textViewTitleImageWithText )
-		AppCompatTextView  textViewTitleImageWithText;
-		@Bind( R.id.imageViewImageWithText )
-		AppCompatImageView imageViewImageWithText;
-		@Bind( R.id.imageViewUp )
-		AppCompatImageView imageViewUp;
-		@Bind( R.id.textViewUpDownCount )
-		AppCompatTextView  textViewUpDownCount;
-		@Bind( R.id.imageViewDown )
-		AppCompatImageView imageViewDown;
-		@Bind( R.id.textViewComments )
-		AppCompatTextView  textViewComments;
-		@Bind( R.id.textViewShare )
-		AppCompatTextView  textViewShare;
-
-		public ViewHolderPopularImageWithText( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderFooter extends RecyclerView.ViewHolder {
-
-		public ViewHolderFooter( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderPopularImage extends RecyclerView.ViewHolder {
-		@Bind( R.id.profile_image )
-		CircleImageView    profileImage;
-		@Bind( R.id.textViewPopularFeedName )
-		AppCompatTextView  textViewPopularFeedName;
-		@Bind( R.id.textViewPopularTime )
-		AppCompatTextView  textViewPopularTime;
-		@Bind( R.id.textViewPopularTitle )
-		AppCompatTextView  textViewPopularTitle;
-		@Bind( R.id.imageViewPopular )
-		AppCompatImageView imageViewPopular;
-		@Bind( R.id.imageViewUp )
-		AppCompatImageView imageViewUp;
-		@Bind( R.id.textViewUpDownCount )
-		AppCompatTextView  textViewUpDownCount;
-		@Bind( R.id.imageViewDown )
-		AppCompatImageView imageViewDown;
-		@Bind( R.id.textViewComments )
-		AppCompatTextView  textViewComments;
-		@Bind( R.id.textViewShare )
-		AppCompatTextView  textViewShare;
-
-		public ViewHolderPopularImage( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-
-	public class ViewHolderPopularText extends RecyclerView.ViewHolder {
-		@Bind( R.id.profile_image )
-		CircleImageView    profileImage;
-		@Bind( R.id.textViewPopularFeedName )
-		AppCompatTextView  textViewPopularFeedName;
-		@Bind( R.id.textViewPopularTime )
-		AppCompatTextView  textViewPopularTime;
-		@Bind( R.id.textViewPopularTitle )
-		AppCompatTextView  textViewPopularTitle;
-		@Bind( R.id.imageViewUp )
-		AppCompatImageView imageViewUp;
-		@Bind( R.id.textViewUpDownCount )
-		AppCompatTextView  textViewUpDownCount;
-		@Bind( R.id.imageViewDown )
-		AppCompatImageView imageViewDown;
-		@Bind( R.id.textViewComments )
-		AppCompatTextView  textViewComments;
-		@Bind( R.id.textViewShare )
-		AppCompatTextView  textViewShare;
-
-		public ViewHolderPopularText( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderMessage extends RecyclerView.ViewHolder {
-		@Bind( R.id.textViewTitleMessage )
-		AppCompatTextView  textViewTitleMessage;
-		@Bind( R.id.textViewDescMessage )
-		AppCompatTextView  textViewDescMessage;
-		@Bind( R.id.imageViewUp )
-		AppCompatImageView imageViewUp;
-		@Bind( R.id.textViewUpDownCount )
-		AppCompatTextView  textViewUpDownCount;
-		@Bind( R.id.imageViewDown )
-		AppCompatImageView imageViewDown;
-		@Bind( R.id.textViewComments )
-		AppCompatTextView  textViewComments;
-		@Bind( R.id.textViewShare )
-		AppCompatTextView  textViewShare;
-		@Bind( R.id.layoutInc )
-		LinearLayout       layoutFooterToolbar;
-
-		public ViewHolderMessage( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderText extends RecyclerView.ViewHolder {
-
-		@Bind( R.id.textViewMessageItem )
-		AppCompatTextView textViewMessageItem;
-
-		public ViewHolderText( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderImageWithText extends RecyclerView.ViewHolder {
-		@Bind( R.id.imageViewProfileItem )
-		CircleImageView   imageViewProfileItem;
-		@Bind( R.id.textViewMessageItem )
-		AppCompatTextView textViewMessageItem;
-		@Bind( R.id.textViewDescItem )
-		AppCompatTextView textViewDescItem;
-
-		public ViewHolderImageWithText( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderImage extends RecyclerView.ViewHolder {
-		@Bind( R.id.imageViewItem )
-		AppCompatImageView imageViewItem;
-		@Bind( R.id.tvImageTitle )
-		AppCompatTextView  tvImageTitle;
-
-		public ViewHolderImage( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderVideo extends RecyclerView.ViewHolder {
-		@Bind( R.id.profile_image )
-		CircleImageView    profileImage;
-		@Bind( R.id.textViewPopularFeedName )
-		AppCompatTextView  textViewPopularFeedName;
-		@Bind( R.id.textViewPopularTime )
-		AppCompatTextView  textViewPopularTime;
-		@Bind( R.id.textViewPopularTitle )
-		AppCompatTextView  textViewPopularTitle;
-		@Bind( R.id.imageViewPopular )
-		AppCompatImageView imageViewPopular;
-		@Bind( R.id.imageViewUp )
-		AppCompatImageView imageViewUp;
-		@Bind( R.id.textViewUpDownCount )
-		AppCompatTextView  textViewUpDownCount;
-		@Bind( R.id.imageViewDown )
-		AppCompatImageView imageViewDown;
-		@Bind( R.id.textViewComments )
-		AppCompatTextView  textViewComments;
-		@Bind( R.id.textViewShare )
-		AppCompatTextView  textViewShare;
-
-		public ViewHolderVideo( View itemView ) {
-			super( itemView );
-			ButterKnife.bind( this, itemView );
-		}
-	}
-
-	public class ViewHolderDefault extends RecyclerView.ViewHolder {
-
-		public ViewHolderDefault( View itemView ) {
-			super( itemView );
-		}
-	}
-
-
 }

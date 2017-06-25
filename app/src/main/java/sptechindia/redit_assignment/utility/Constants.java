@@ -16,7 +16,7 @@ public class Constants {
 	public static final int ROW_IMAGE_WITH_TEXT         = 7;
 	public static final int ROW_VIDEO                   = 8;
 	public static final int ROW_DEFAULT                 = 9;
-	public static final int ROW_POPULAR_VIDEO           = 10;
+	public static final int ROW_POPULAR_GIF           = 10;
 	public static final int ROW_POPULAR_TEXT            = 11;
 	public static final int ROW_POPULAR_IMAGE_WITH_TEXT = 12;
 
