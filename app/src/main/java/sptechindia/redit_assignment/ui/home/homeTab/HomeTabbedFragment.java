@@ -28,7 +28,6 @@ import sptechindia.redit_assignment.adapter.CommonRecyclerAdapter;
 import sptechindia.redit_assignment.adapter.SortListAdapter;
 import sptechindia.redit_assignment.base.BaseFragment;
 import sptechindia.redit_assignment.controllers.OnRecyclerItemClickListener;
-import sptechindia.redit_assignment.model.ModelVideo;
 import sptechindia.redit_assignment.model.home.Child;
 import sptechindia.redit_assignment.ui.home.FeedDetailDialogFragment;
 import sptechindia.redit_assignment.ui.home.homeTab.presenter.HomeTabPresenter;
@@ -123,7 +122,10 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 		commonRecyclerAdapter = new CommonRecyclerAdapter( childList, Constants.ROW_POPULAR_GIF, false, this );
 		recyclerViewPopular.setAdapter( commonRecyclerAdapter );
 
-		homeTabPresenter.getData();
+
+		if ( childList.size() == 0 ) {
+			homeTabPresenter.getData();
+		}
 
 		recyclerViewPopular.addOnScrollListener( new RecyclerView.OnScrollListener() {
 			@Override
@@ -165,7 +167,7 @@ public class HomeTabbedFragment extends BaseFragment implements HomeTabViewInter
 		Log.i( TAG, "getData: " + listChild );
 
 		childList.clear();
-	//	childList.add( new ModelVideo( "Spm", "asdadas", "asda", "asdasd" ) );
+		//	childList.add( new ModelVideo( "Spm", "asdadas", "asda", "asdasd" ) );
 		for ( Child child : listChild ) {
 			childList.add( child );
 		}

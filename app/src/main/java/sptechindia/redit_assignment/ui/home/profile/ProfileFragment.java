@@ -23,7 +23,7 @@ import sptechindia.redit_assignment.utility.Constants;
 
 public class ProfileFragment extends BaseFragment {
 
-	private static final String TAG = "ProfileFragment";
+	public static final String TAG = "ProfileFragment";
 
 	//rootview
 	View                    rootView;
